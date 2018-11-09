@@ -1,0 +1,44 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+barbeerdrinker-ui/dist
+barbeerdrinker-ui/tmp
+barbeerdrinker-ui/out-tsc
+
+# dependencies
+barbeerdrinker-ui/node_modules
+
+# IDEs and editors
+bar-beer-drinker-ui/.idea
+bar-beer-drinker-ui/.project
+bar-beer-drinker-ui/.classpath
+bar-beer-drinker-ui/.c9/
+bar-beer-drinker-ui/*.launch
+bar-beer-drinker-ui/.settings/
+bar-beer-drinker-ui/*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+barbeerdrinker-ui/.sass-cache
+barbeerdrinker-ui/connect.lock
+barbeerdrinker-ui/coverage
+barbeerdrinker-ui/libpeerconnection.log
+barbeerdrinker-ui/npm-debug.log
+barbeerdrinker-ui/yarn-error.log
+barbeerdrinker-ui/testem.log
+barbeerdrinker-ui/typings
+
+# System Files
+barbeerdrinker-ui/.DS_Store
+barbeerdrinker-ui/Thumbs.db
+
+# server-side virtual environment
+server/venv
+server/**/__pycache__
+server/BarBeerDrinker/config.py
