@@ -9,13 +9,13 @@ barbeerdrinker-ui/out-tsc
 barbeerdrinker-ui/node_modules
 
 # IDEs and editors
-bar-beer-drinker-ui/.idea
-bar-beer-drinker-ui/.project
-bar-beer-drinker-ui/.classpath
-bar-beer-drinker-ui/.c9/
-bar-beer-drinker-ui/*.launch
-bar-beer-drinker-ui/.settings/
-bar-beer-drinker-ui/*.sublime-workspace
+barbeerdrinker-ui/.idea
+barbeerdrinker-ui/.project
+barbeerdrinker-ui/.classpath
+barbeerdrinker-ui/.c9/
+barbeerdrinker-ui/*.launch
+barbeerdrinker-ui/.settings/
+barbeerdrinker-ui/*.sublime-workspace
 
 # IDE - VSCode
 .vscode/*
