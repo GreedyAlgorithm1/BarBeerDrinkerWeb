@@ -1,0 +1,38 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">A Bar Base to Your Taste</h1>
+    <p class="lead">Welcome to the bar-beer-drinker-plus website! </p>
+  </div>
+</div>
+<div class="card" style="width: 100%;">
+  <img class="card-img-top" src="https://images.unsplash.com/photo-1518176258769-f227c798150e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c2f65a2019b066f34061dfe4afb41bb4&auto=format&fit=crop&w=1189&q=80" alt="beer on bar">
+</div>
+
+<div class = "container">
+	<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">State</th>
+      <th scope="col">Open</th>
+      <th scope="col">Close</th>
+      <th scope="col">License</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let bar of bars; index as i">
+      <th scope="row">{{ i + 1}}</th>
+      <td>{{ bar.name }}</td>
+      <td>{{ bar.state }}</td>
+      <td>{{ bar.open }}</td>
+      <td>{{ bar.close }}</td>
+      <td>{{ bar.license }}</td>
+      <td>{{ bar.phone }}</td>
+      <td>{{ bar.addr }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
