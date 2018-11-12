@@ -11,11 +11,11 @@ def get_bars():
 		rs = con.execute("SELECT id, name, state, open, close, license, phone, addr FROM bars;")
 		return [dict(row) for row in rs]
 
-def find_bar(bar_Id):
+def find_bar(id):
 	with engine.connect() as con:
-		query = sql.text( "SELECT id, name, state, open, close, license, phone, address FROM bars WHERE id = :bar_Id;")
+		query = sql.text( "SELECT id, name, state, open, close, license, phone, addr FROM bars WHERE id = :id;")
 
-		rs = con.execute(query, id = bar_Id)
+		rs = con.execute(query, id = id)
 		result = rs.first()
 		if result is None:
 			return None

@@ -17,14 +17,14 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit() {  }
 
-  getBars(){
-  	this.barService.getBars().subscribe(
-  		data => {
-  			this.bars = data;
-  		},
-  		error => {
-  			alert("Could not retrieve a list of bars.")
-  		}
-  	);
+  getBars() {
+    this.barService.getBars().subscribe(
+      data => {
+        this.bars = data;
+      },
+      error => {
+        alert('Could not retrieve a list of bars');
+      }
+    );
   }
 }
