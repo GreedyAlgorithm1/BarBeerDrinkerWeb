@@ -1,0 +1,12 @@
+{{ barId}}
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">{{barId}} {{barDetails.name}}</h1>
+    <p class="bar-details" *ngIf = "barDetails">
+    	{{ barDetails?.addr }} <span *ngIf = "barDetails.addr &&  barDetails.state"> | </span> {{barDetails?.state}}
+    	<br>
+    	{{barDetails?.phone}}
+    </p>
+  </div>
+</div>

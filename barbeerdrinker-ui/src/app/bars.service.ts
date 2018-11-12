@@ -26,4 +26,8 @@ getBars(){
 	return this.http.get<Bar[]>('/api/bar');
 }
 
+getBar(bar:number){
+	
+	return this.http.get<Bar>('/api/bar/'+bar)
+}
 }
