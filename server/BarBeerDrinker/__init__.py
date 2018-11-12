@@ -45,7 +45,7 @@ def get_menu(name):
         bar = database.find_bar(name)
         if bar is None:
             return make_response("No bar found with the given name.", 404)
-        return jsonify(database.get_bar_menu(name))
+        return jsonify(database.get_bar_beer_menu(name))
     except ValueError as e:
         return make_response(str(e), 400)
     except Exception as e:

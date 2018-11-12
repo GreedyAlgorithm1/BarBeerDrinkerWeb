@@ -42,3 +42,7 @@ barbeerdrinker-ui/Thumbs.db
 server/venv
 server/**/__pycache__
 server/BarBeerDrinker/config.py
+
+#Binary files that python uses
+__init__.pyc
+database.pyc

@@ -27,7 +27,7 @@ def filter_beers(max_price):
 
 		rs = con.execute(query, max_price = max_price)
 		results = [dict(row) for row in rs]
-		for r in result:
+		for r in results:
 			r['Price'] = float(r['Price'])
 		return results
 
@@ -47,7 +47,7 @@ def get_bar_beer_menu(bar_Id):
 
 #gets food/non-beer items from a particular bar using its Id
 #write this in the __init__.py file
-def get_bar_items_menue(bar_Id):
+def get_bar_items_menu(bar_Id):
     with engine.connect() as con:
         query = sql.text(
             'SELECT Name, Price FROM sellsItems WHERE Id = :bar_Id;'
