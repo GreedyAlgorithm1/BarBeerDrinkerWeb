@@ -11,6 +11,7 @@ import { HttpResponse } from '@angular/common/http';
 export class BarDetailsComponent implements OnInit {
 	barId: number;
 	barDetails: Bar;
+	menu: BarMenuItem[];
 
   constructor(
   	private barService: BarsService,
@@ -35,6 +36,15 @@ export class BarDetailsComponent implements OnInit {
 
   				}
   			);
+
+  			barService.getMenu(this.barId).subscribe(
+  				data => {
+  					this.menu = data;
+
+  				}
+  			);
+
+
   		});
   } 
 

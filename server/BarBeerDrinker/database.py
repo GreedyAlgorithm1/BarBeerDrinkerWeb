@@ -33,29 +33,39 @@ def filter_beers(max_price):
 
 #BAR SECTION
 
-#gets beer  from a particular bar using its Id
-#write this in the __init__.py file
-def get_bar_beer_menu(bar_Id):
+#gets full menue list from a particular bar using its id
+#sub-calls get_bar_beer_menue and get_bar_items_menue also using id
+#merges the two into a results list
+"""
+def get_bar_menu(id):
+    beerResults = get_bar_beer_menu(id)
+    itemsResults = get_bar_items_menu(id)
+    results = beerResults + itemsResults
+    return results
+"""
+
+#gets beers from a particular bar using its id
+def get_bar_menu(id):
     with engine.connect() as con:
         query = sql.text(
-            'SELECT Name, Price FROM sellsBeers WHERE Id = :bar_Id;')
-        rs = con.execute(query, Id=bar_Id)
+            'SELECT s.id, s.beer, b.manf, s.price FROM sellsBeer s JOIN beers b ON s.beer = b.name WHERE s.id = :id;')
+        rs = con.execute(query, id=id)
         results = [dict(row) for row in rs]
         for i, _ in enumerate(results):
-            results[i]['Price'] = float(results[i]['Price'])
+            results[i]['price'] = float(results[i]['price'])
         return results
 
 #gets food/non-beer items from a particular bar using its Id
 #write this in the __init__.py file
-def get_bar_items_menue(bar_Id):
+def get_bar_items_menu(id):
     with engine.connect() as con:
         query = sql.text(
-            'SELECT Name, Price FROM sellsItems WHERE Id = :bar_Id;'
+            'SELECT item, price FROM sellsItem WHERE id = :id;'
             )
-        rs = con.execute(query, bar_Id = bar_Id)
+        rs = con.execute(query, id = id)
         results = [dict(row) for row in rs]
         for i, _ in enumerate(results):
-            results[i]['Price'] = float(results[i]['Price'])
+            results[i]['price'] = float(results[i]['price'])
         return results
 
 """
@@ -84,12 +94,6 @@ def get_bar_frequent_counts():
         rs = con.execute(query)
         results = [dict(row) for row in rs]
         return results
-
-
-def get_bar_cities():
-    with engine.connect() as con:
-        rs = con.execute('SELECT DISTINCT city FROM bars;')
-        return [row['city'] for row in rs]
 
 """
 
