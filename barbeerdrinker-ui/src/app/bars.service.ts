@@ -17,7 +17,13 @@ export interface BarMenuItem{
 	id: number;
 	beer: string;
 	manf: string;
-	price: number
+	price: number;
+	liked: number;
+}
+
+export interface BarFoodItem{
+	item: string;
+	price: number;
 }
 
 @Injectable({
@@ -40,5 +46,9 @@ export class BarsService {
 
 	getMenu(bar:number){
 		return this.http.get<BarMenuItem[]>('/api/menu/' +bar);
+	}
+
+	getFoodMenu(bar:number){
+		return this.http.get<BarFoodItem[]>('/api/menu2/' +bar);
 	}
 }

@@ -12,6 +12,7 @@ export class BarDetailsComponent implements OnInit {
 	barId: number;
 	barDetails: Bar;
 	menu: BarMenuItem[];
+	foodMenu: BarFoodItem[];
 
   constructor(
   	private barService: BarsService,
@@ -42,6 +43,14 @@ export class BarDetailsComponent implements OnInit {
   					this.menu = data;
 
   				}
+  			);
+
+  			barService.getFoodMenu(this.barId).subscribe(
+  				data => {
+  					this.foodMenu = data;
+
+  				}
+
   			);
 
 
