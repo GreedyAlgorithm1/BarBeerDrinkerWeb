@@ -48,7 +48,10 @@ def get_bar_menu(id):
 def get_bar_menu(id):
     with engine.connect() as con:
         query = sql.text(
-            'SELECT s.id, s.beer, b.manf, s.price FROM sellsBeer s JOIN beers b ON s.beer = b.name WHERE s.id = :id;')
+            'SELECT a.id, a.beer, a.price, b.manf, coalesce(c.like_count, 0) as liked \
+            FROM sellsBeer as a JOIN beers AS b ON a.beer = b.name \
+            LEFT OUTER JOIN (SELECT beer, count(*) as like_count FROM likes GROUP BY beer) as c \
+             ON a.beer = c.beer  WHERE a.id = :id; ')
         rs = con.execute(query, id=id)
         results = [dict(row) for row in rs]
         for i, _ in enumerate(results):
@@ -68,15 +71,14 @@ def get_bar_items_menu(id):
             results[i]['price'] = float(results[i]['price'])
         return results
 
-"""
+
 def get_bars_selling(beer):
     with engine.connect() as con:
-        query = sql.text('SELECT a.bar, a.price, b.customers \
-                FROM sells AS a \
-                JOIN (SELECT bar, count(*) AS customers FROM frequents GROUP BY bar) as b \
-                ON a.bar = b.bar \
-                WHERE a.beer = :beer \
-                ORDER BY a.price; \
+        query = sql.text('SELECT a.id, a.bar, a.price, b.customers \
+                          FROM sellsBeer AS a \
+                          JOIN (SELECT bar, count(*) AS customers FROM frequents GROUP BY bar) as b\
+                          ON a.bar = b.bar WHERE a.beer = :beer \
+                          ORDER BY a.price; \
             ')
         rs = con.execute(query, beer=beer)
         results = [dict(row) for row in rs]
@@ -84,7 +86,7 @@ def get_bars_selling(beer):
             results[i]['price'] = float(results[i]['price'])
         return results
 
-
+"""
 def get_bar_frequent_counts():
     with engine.connect() as con:
         query = sql.text('SELECT bar, count(*) as frequentCount \
@@ -106,23 +108,18 @@ def get_beers():
         return [dict(row) for row in rs]
 
 
-def get_beer_manf(beer):
+def get_beer_manf(name):
     with engine.connect() as con:
-        if beer is None:
+        if name is None:
             rs = con.execute('SELECT DISTINCT manf FROM beers;')
             return [row['manf'] for row in rs]
 
-        query = sql.text('SELECT manf FROM beers WHERE name = :beer;')
-        rs = con.execute(query, beer=beer)
+        query = sql.text('SELECT manf FROM beers WHERE name = :name;')
+        rs = con.execute(query, name=name)
         result = rs.first()
         if result is None:
             return None
         return result['manf']
-
-#ADD TO INIT.PY
-#given beer- query bars were beer is sold the most
-#def get_most_popular_bar(beer_name):
-
 
 
 #DRINKER SECTION
