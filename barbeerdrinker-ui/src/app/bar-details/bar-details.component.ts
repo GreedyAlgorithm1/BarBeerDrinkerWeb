@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BarsService, Bar } from '../bars.service';
+import { BarsService, Bar, BarMenuItem, BarFoodItem } from '../bars.service';
 import { HttpResponse } from '@angular/common/http';
 
 @Component({
