@@ -114,6 +114,7 @@ def get_beer_manf(name):
             rs = con.execute('SELECT DISTINCT manf FROM beers;')
             return [row['manf'] for row in rs]
 
+        name = name.strip()
         query = sql.text('SELECT manf FROM beers WHERE name = :name;')
         rs = con.execute(query, name=name)
         result = rs.first()
