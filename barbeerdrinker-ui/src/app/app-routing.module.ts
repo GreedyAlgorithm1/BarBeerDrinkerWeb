@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { BarDetailsComponent } from './bar-details/bar-details.component';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
+import { DrinkersComponent } from './drinkers/drinkers.component';
 
 const routes: Routes = [
 	{
@@ -24,9 +25,12 @@ const routes: Routes = [
     	path:'beers/:beer',
     	pathMatch: 'full',
     	component: BeerDetailsComponent
-
-    }
-
+	},
+	{
+		path:'drinkers',
+		pathMatch: 'full',
+		component: DrinkersComponent
+	}
 ];
 
 @NgModule({
