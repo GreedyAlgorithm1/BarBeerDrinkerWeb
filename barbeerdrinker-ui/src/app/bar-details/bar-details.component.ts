@@ -14,11 +14,11 @@ export class BarDetailsComponent implements OnInit {
 	menu: BarMenuItem[];
 	foodMenu: BarFoodItem[];
 
-  constructor(
-  	private barService: BarsService,
-  	private route: ActivatedRoute
-  ) { 
-  		route.paramMap.subscribe((paramMap) =>{
+	constructor(
+  		private barService: BarsService,
+  		private route: ActivatedRoute
+	) { 
+  		this.route.paramMap.subscribe((paramMap) =>{
   			this.barId = +paramMap.get('bar');
 
   			barService.getBar(this.barId).subscribe(
