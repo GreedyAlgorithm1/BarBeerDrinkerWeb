@@ -22,7 +22,6 @@ export class BeersService {
 
   getBeerManufacturers(beer?: string): any{
   	if (beer){
-			console.error(beer)
   		return this.http.get<string>('/api/beer-manufacturer/' +beer);
   	}
   	return this.http.get<string[]>('/api/beer-manufacturer');

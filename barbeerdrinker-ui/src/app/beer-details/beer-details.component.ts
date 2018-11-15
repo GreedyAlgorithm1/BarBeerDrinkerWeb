@@ -29,7 +29,6 @@ export class BeerDetailsComponent implements OnInit {
   			this.beerService.getBeerManufacturers(this.beerName).subscribe(
           		data => {
 					   this.manufacturer = data;
-					   console.error(data + this.beerName)
           		}
         	);
 

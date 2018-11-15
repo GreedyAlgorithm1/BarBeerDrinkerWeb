@@ -51,6 +51,20 @@ def get_menu(bar_id):
     except Exception as e:
         return make_response(str(e), 500)
 
+@app.route('/api/menu2/<bar_id>', methods=['GET'])
+def get_food_menu(bar_id):
+    try:
+        if bar_id is None:
+            raise ValueError('Bar is not specified.')
+        bar = database.find_bar(bar_id)
+        if bar is None:
+            return make_response("No bar found with the given name.", 404)
+        return jsonify(database.get_bar_items_menu(bar_id))
+    except ValueError as e:
+        return make_response(str(e), 400)
+    except Exception as e:
+        return make_response(str(e), 500)
+
 
 @app.route("/api/beer", methods=["GET"])
 def get_beers():
