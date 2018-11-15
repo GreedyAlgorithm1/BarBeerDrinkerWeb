@@ -59,7 +59,6 @@ def get_bar_menu(id):
         return results
 
 #gets food/non-beer items from a particular bar using its Id
-#write this in the __init__.py file
 def get_bar_items_menu(id):
     with engine.connect() as con:
         query = sql.text(
