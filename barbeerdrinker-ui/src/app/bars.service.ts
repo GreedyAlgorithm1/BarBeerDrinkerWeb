@@ -13,21 +13,32 @@ export interface Bar{
 
 }
 
+export interface BarMenuItem{
+	id: number;
+	beer: string;
+	manf: string;
+	price: number
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class BarsService {
 
   constructor(
   public http: HttpClient
   ) { }
 
-getBars(){
-	return this.http.get<Bar[]>('/api/bar');
-}
+	getBars(){
+		return this.http.get<Bar[]>('/api/bar');
+	}
 
-getBar(bar:number){
-	
-	return this.http.get<Bar>('/api/bar/'+bar)
-}
+	getBar(bar:number){	
+		return this.http.get<Bar>('/api/bar/'+bar);
+	}
+
+	getMenu(bar:number){
+		return this.http.get<BarMenuItem[]>('/api/menu/' +bar);
+	}
 }
