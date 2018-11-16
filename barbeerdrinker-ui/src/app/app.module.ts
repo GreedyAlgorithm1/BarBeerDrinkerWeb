@@ -15,6 +15,7 @@ import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeersComponent } from './beers/beers.component';
 import { DrinkersComponent } from './drinkers/drinkers.component';
 import { InsightComponent } from './insight/insight.component';
+import { DrinkerDetailsComponent } from './drinker-details/drinker-details.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { InsightComponent } from './insight/insight.component';
     BeerDetailsComponent,
     BeersComponent,
     DrinkersComponent,
-    InsightComponent
+    InsightComponent,
+    DrinkerDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,13 @@ export interface Drinker{
   name: string;
   state: string;
   phone: string;
-  addr: string;
+  address: string;
+}
+
+export interface LikesBeer{
+  id: number;
+  name: string;
+  manf: string;
 }
 
 @Injectable({
@@ -14,5 +20,18 @@ export interface Drinker{
 })
 export class DrinkersService {
 
-  constructor(private http: HttpClient) { }
+  constructor(public http: HttpClient) { }
+
+  getDrinkers(){
+    return this.http.get<Drinker[]>('/api/drinker');
+  }
+
+  getDrinker(drinker: number){
+    return this.http.get<Drinker>('/api/drinker/' +drinker);
+  }
+
+  // Might have to be rewritted because database somehow gets the name but we dont have to send it in...
+  getDrinkerLikes(drinker: string){
+    return this.http.get<LikesBeer[]>('api/likes');
+  }
 }

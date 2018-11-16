@@ -132,16 +132,17 @@ def get_drinkers():
 def get_likes(drinker_name):
     """Gets a list of beers liked by the drinker provided."""
 
+    drinker_name = drinker_name.strip()
     with engine.connect() as con:
         query = sql.text('SELECT beerName FROM Likes WHERE Name = :name;')
         rs = con.execute(query, Name=drinker_name)
         return [row['beerName'] for row in rs]
 
 
-def get_drinker_info(drinker_name):
+def get_drinker_info(drinker_id):
     with engine.connect() as con:
-        query = sql.text('SELECT * FROM drinkers WHERE name = :name;')
-        rs = con.execute(query, name=drinker_name)
+        query = sql.text('SELECT * FROM drinkers WHERE id = :drinker_id;')
+        rs = con.execute(query, drinker_id=drinker_id)
         result = rs.first()
         if result is None:
             return None

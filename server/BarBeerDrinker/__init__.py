@@ -109,12 +109,12 @@ def get_drinkers():
         return make_response(str(e), 500)
 
 
-@app.route("/api/drinker/<name>", methods=["GET"])
-def get_drinker(name):
+@app.route("/api/drinker/<drinker_id>", methods=["GET"])
+def get_drinker(drinker_id):
     try:
-        if name is None:
+        if drinker_id is None:
             raise ValueError("Drinker is not specified.")
-        return jsonify(database.get_drinker_info(name))
+        return jsonify(database.get_drinker_info(drinker_id))
     except ValueError as e:
         return make_response(str(e), 400)
     except Exception as e:
