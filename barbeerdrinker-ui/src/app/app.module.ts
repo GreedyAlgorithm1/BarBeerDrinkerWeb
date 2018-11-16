@@ -12,7 +12,11 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { BarDetailsComponent } from './bar-details/bar-details.component';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
+<<<<<<< HEAD
 import { BeersComponent } from './beers/beers.component';
+=======
+import { DrinkersComponent } from './drinkers/drinkers.component';
+>>>>>>> 352b82cf3a35399e283705de7ea6694ccd32e22d
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { BeersComponent } from './beers/beers.component';
     WelcomeComponent,
     BarDetailsComponent,
     BeerDetailsComponent,
+<<<<<<< HEAD
     BeersComponent
+=======
+    DrinkersComponent
+>>>>>>> 352b82cf3a35399e283705de7ea6694ccd32e22d
   ],
   imports: [
     BrowserModule,
