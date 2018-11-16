@@ -51,4 +51,8 @@ export class BarsService {
 	getFoodMenu(bar:number){
 		return this.http.get<BarFoodItem[]>('/api/menu2/' +bar);
 	}
+
+	getFrequentCounts() {
+    	return this.http.get<any[]>('/api/frequents-data');
+  	}
 }

@@ -3,11 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { BarDetailsComponent } from './bar-details/bar-details.component';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
-<<<<<<< HEAD
 import { BeersComponent } from './beers/beers.component';
-=======
+import { InsightComponent } from './insight/insight.component';
 import { DrinkersComponent } from './drinkers/drinkers.component';
->>>>>>> 352b82cf3a35399e283705de7ea6694ccd32e22d
 
 const routes: Routes = [
 	{
@@ -34,6 +32,11 @@ const routes: Routes = [
     	path:'beers/:beer',
     	pathMatch: 'full',
     	component: BeerDetailsComponent
+	},
+	{
+    	path:'insight',
+    	pathMatch: 'full',
+    	component: InsightComponent
 	},
 	{
 		path:'drinkers',

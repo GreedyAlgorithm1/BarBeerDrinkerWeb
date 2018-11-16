@@ -86,10 +86,10 @@ def get_bars_selling(beer):
             results[i]['price'] = float(results[i]['price'])
         return results
 
-"""
+
 def get_bar_frequent_counts():
     with engine.connect() as con:
-        query = sql.text('SELECT bar, count(*) as frequentCount \
+        query = sql.text('SELECT barid, bar, count(*) as frequentCount \
                 FROM frequents \
                 GROUP BY bar; \
             ')
@@ -97,7 +97,6 @@ def get_bar_frequent_counts():
         results = [dict(row) for row in rs]
         return results
 
-"""
 
 #BEER SECTION
 def get_beers():
