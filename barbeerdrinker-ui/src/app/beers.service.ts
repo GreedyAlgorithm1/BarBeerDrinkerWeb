@@ -9,12 +9,17 @@ export interface BeerLocation{
 	customers: number;
 
 }
+
 @Injectable({
   providedIn: 'root'
 })
 export class BeersService {
 
   constructor(private http: HttpClient) { }
+
+  getBeers() {
+    return this.http.get<any[]>('/api/beer');
+  }
 
   getBarsSelling(beer:string){
   	return this.http.get<BeerLocation[]>('/api/bars-selling/' +beer);

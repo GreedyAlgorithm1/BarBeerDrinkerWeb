@@ -80,6 +80,7 @@ def get_bars_selling(beer):
                           ON a.bar = b.bar WHERE a.beer = :beer \
                           ORDER BY a.price; \
             ')
+        beer = beer.strip()
         rs = con.execute(query, beer=beer)
         results = [dict(row) for row in rs]
         for i, _ in enumerate(results):
