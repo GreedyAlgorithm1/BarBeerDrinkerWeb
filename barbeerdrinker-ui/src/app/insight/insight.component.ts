@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BarsService } from '../bars.service';
 
-declare const HighCharts: any;
+declare const Highcharts: any;
 
 @Component({
   selector: 'app-insight',
