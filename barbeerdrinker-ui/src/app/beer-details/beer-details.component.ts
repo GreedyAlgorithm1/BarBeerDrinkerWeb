@@ -32,9 +32,10 @@ export class BeerDetailsComponent implements OnInit {
   			);
 
   			this.beerService.getBeerManufacturers(this.beerName).subscribe(
-          		data => {
-					   this.manufacturer = data;
-          		}
+          data => {
+            this.manufacturer = data;
+            console.log(data);
+          	}
         	);
 
           this.filterOptions = [

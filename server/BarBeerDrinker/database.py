@@ -77,8 +77,7 @@ def get_bars_selling(beer):
                           FROM sellsBeer AS a \
                           JOIN (SELECT bar, count(*) AS customers FROM frequents GROUP BY bar) as b\
                           ON a.bar = b.bar WHERE a.beer = :beer \
-                          ORDER BY a.price; \
-            ')
+                          ORDER BY a.price;')
         beer = beer.strip()
         rs = con.execute(query, beer=beer)
         results = [dict(row) for row in rs]
@@ -147,3 +146,43 @@ def get_drinker_info(drinker_id):
         if result is None:
             return None
         return dict(result)
+    
+def get_drinker_name_by_id(drinker_id):
+    with engine.connect() as con:
+        query = sql.text("SELECT name FROM drinkers WHERE id = :drinker_id;")
+        rs = con.execute(query, drinker_id=drinker_id)
+        result = rs.first()
+        if result is None:
+            return None
+        return result['name']
+
+
+#TRANSACTION SECTION
+def get_transactions_from_drinker(drinker_id):
+    with engine.connect() as con:
+        query = sql.text('SELECT t1.tid, t1.barId, t1.drinkerId, t1.subtotal, t1.tax, t1.tip, t1.total \
+                            FROM transactions t1 JOIN (SELECT id, name FROM drinkers) as d \
+                            ON t1.drinkerId = :drinker_id \
+                            WHERE t1.drinkerId = d.id;')
+        rs = con.execute(query, drinker_id=drinker_id)
+        results = [dict(row) for row in rs]
+        for i, _ in enumerate(results):
+            results[i]['subtotal'] = float(results[i]['subtotal'])
+            results[i]['tax'] = float(results[i]['tax'])
+            results[i]['tip'] = float(results[i]['tip'])
+            results[i]['total'] = float(results[i]['total'])
+        return results
+
+
+#BILLS SECTION
+def get_bills_from_drinker(drinker_id):
+    with engine.connect() as con:
+        query = sql.text('SELECT b.billId, b.barId, b.drinkerId, b.timeIssued, b.item, b.quantity, b.price \
+                            FROM bills b JOIN (SELECT id, name FROM drinkers) as d \
+                            ON b.drinkerId = :drinker_id \
+                            WHERE b.drinkerId = d.id')
+        rs = con.execute(query, drinker_id=drinker_id)
+        results = [dict(row) for row in rs]
+        for i, _ in enumerate(results):
+            results[i]['price'] = float(results[i]['price'])
+        return results

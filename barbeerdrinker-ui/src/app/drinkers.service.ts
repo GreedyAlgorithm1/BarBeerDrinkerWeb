@@ -30,6 +30,10 @@ export class DrinkersService {
     return this.http.get<Drinker>('/api/drinker/' +drinker);
   }
 
+  getDrinkerNameById(drinker_id: number){
+    return this.http.get<string>('/api/drinkerNameById/' +drinker_id);
+  }
+
   // Might have to be rewritted because database somehow gets the name but we dont have to send it in...
   getDrinkerLikes(drinker: string){
     return this.http.get<LikesBeer[]>('api/likes');

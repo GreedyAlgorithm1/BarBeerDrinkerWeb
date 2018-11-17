@@ -9,6 +9,7 @@ import {DrinkersService, Drinker } from '../drinkers.service';
 })
 export class DrinkersComponent implements OnInit {
 
+  loading: boolean;
   drinkers: Drinker[];
 
   constructor(public drinkersService: DrinkersService) { 
@@ -25,5 +26,9 @@ export class DrinkersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
   }
 }
