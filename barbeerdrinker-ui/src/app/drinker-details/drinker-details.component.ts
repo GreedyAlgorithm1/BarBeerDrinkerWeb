@@ -47,14 +47,14 @@ export class DrinkerDetailsComponent implements OnInit {
         this.drinkerService.getDrinkerNameById(this.drinkerId).subscribe(
           data => {
             this.drinkerName = data;
-            //console.log(data)
+            console.log(data)
           }
         );
 
         this.drinkerService.getDrinker(this.drinkerId).subscribe(
           data => {
             this.drinkerDetails = data;
-            //console.log(data)
+            console.log(data)
           }
         );
 

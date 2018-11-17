@@ -44,17 +44,17 @@ const routes: Routes = [
 		component: DrinkersComponent
 	},
 	{
-
 		path: 'modifications',
 		pathMatch: 'full',
 		component: ModificationsComponent
-
+	},
+	{
 		path: 'drinkers/:drinker',
 		pathMatch: 'full',
 		component: DrinkerDetailsComponent
 	},
 	{
-    	path:'insight',
+    	path: 'insight',
     	pathMatch: 'full',
     	component: InsightComponent
 

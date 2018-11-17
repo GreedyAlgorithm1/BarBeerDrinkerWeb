@@ -100,6 +100,17 @@ def get_likes():
     except Exception as e:
         return make_response(str(e), 500)
 
+@app.route("/api/drinkersOrders/<drinker_id>")
+def get_beers_ordered(drinker_id):
+    try:
+        if drinker_id is None:
+            raise ValueError("Drinker ID is not specified")
+        return jsonify(database.get_beers_ordered(drinker_id))
+    except ValueError as e:
+        return make_response(str(e), 400)
+    except Exception as e:
+        return make_response(str(e), 500)
+
 
 @app.route("/api/drinker", methods=["GET"])
 def get_drinkers():
@@ -109,17 +120,50 @@ def get_drinkers():
         return make_response(str(e), 500)
 
 
-@app.route("/api/drinker/<name>", methods=["GET"])
-def get_drinker(name):
+@app.route("/api/drinker/<drinker_id>", methods=["GET"])
+def get_drinker(drinker_id):
     try:
-        if name is None:
+        if drinker_id is None:
             raise ValueError("Drinker is not specified.")
-        return jsonify(database.get_drinker_info(name))
+        return jsonify(database.get_drinker_info(drinker_id))
+    except ValueError as e:
+        return make_response(str(e), 400)
+    except Exception as e:
+        return make_response(str(e), 500)
+ 
+ 
+@app.route("/api/drinkerNameById/<drinker_id>", methods=["GET"])
+def get_drinker_name_by_id(drinker_id):
+    try:
+        if drinker_id is None:
+            raise ValueError("Drinker Id not given.")
+        return jsonify(database.get_drinker_name_by_id(drinker_id))
     except ValueError as e:
         return make_response(str(e), 400)
     except Exception as e:
         return make_response(str(e), 500)
 
+@app.route('/api/bills/<drinker_id>', methods=["GET"])
+def get_bill_from_drinker_(drinker_id):
+    try:
+        if drinker_id is None:
+            raise ValueError("Drinker ID is not specified")
+        return jsonify(database.get_bills_from_drinker(drinker_id))
+    except ValueError as e:
+        return make_response(str(e), 400)
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/transactions/<drinker_id>', methods=["GET"])
+def get_transactions_from_drinker(drinker_id):
+    try:
+        if drinker_id is None:
+            raise ValueError("Drinker ID is not specified")
+        return jsonify(database.get_transactions_from_drinker(drinker_id))
+    except ValueError as e:
+        return make_response(str(e), 400)
+    except Exception as e:
+        return make_response(str(e), 500)
 
 @app.route('/api/bars-selling/<beer>', methods=['GET'])
 def find_bars_selling(beer):
