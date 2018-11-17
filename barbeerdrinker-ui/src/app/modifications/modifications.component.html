@@ -1,0 +1,70 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Table Modification</h1>
+    <p class="lead">This page will allow you to update/insert/delete any table found within the database.
+    	<br>
+    Please make sure to check out the relational schema!</p>
+    	<br>    
+  </div>
+</div>
+<br>
+
+
+
+<form >
+	<div class ="form-group">
+		<p for="barId">Bar ID</p>
+		<div class = "alert alert-danger" *ngIf="barId.touched && !barId.valid">Bar ID is required. </div>
+		<input required ngModel name= "barId" #barId = "ngModel" (change) = "log(barId)" id="barId" type="number" class ="form-control">
+	</div>
+
+	<div class = "form-group">
+		<p  for="beerId"> Beer ID</p>
+		<div class = "alert alert-danger" *ngIf="beerId.touched && !beerId.valid">Beer ID is required. </div>
+		<input required ngModel name="beerId" #beerId = "ngModel" (change) = "log(beerId)" id="beerId" type="number" class="form-control">
+	</div>
+
+	<div class = "form-group">
+		<p for="drinkerId">Drinker ID</p>
+		<div class = "alert alert-danger" *ngIf="drinkerId.touched && !drinkerId.valid">Drinker ID is required. </div>
+		<input required ngModel name="drinkerId" #drinkerId = "ngModel" (change) = "log(drinkerId)" id="drinkerId" type="number" class="form-control">
+	</div>
+	<br>
+	<button class ="btn btn-primary">Verify</button>
+</form>
+
+<br>
+<br>
+<!--
+<form>
+  <div class="form-row">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Drinker ID">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Bar ID">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Beer ID">
+    </div>
+  </div>
+</form>
+<br>
+<br>
+
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Query Mod</span>
+  </div>
+  <textarea class="form-control" aria-label="Query Mod"></textarea>
+</div>
+<br>
+<br>
+
+
+<div class = "container">
+	<h2 class = "text-center font-weight-dark"> Results:</h2>
+	
+</div>
+
+-->

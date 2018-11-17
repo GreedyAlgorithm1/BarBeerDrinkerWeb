@@ -139,3 +139,19 @@ def get_bar_frequent_counts():
         return jsonify(database.get_bar_frequent_counts())
     except Exception as e:
         return make_response(str(e), 500)
+
+@app.route('/api/modifications/<sqlQuery>', methods=['GET'])
+def execue_mod(sqlQuery):
+    try:
+        if sqlQueryNo is None:
+            raise ValueError("No query specified")
+        return jsonify(database.add_query(sqlQuery))
+    except Exception as e:
+        return make_response(str(e), 500)
+
+@app.route('/api/verify/<queryNo>', methods=['GET'])
+def get_query_ver(queryNo):
+    try:
+        return jsonify(database.check_query(queryNo))
+    except Exception as e:
+        return make_response(str(e),500)

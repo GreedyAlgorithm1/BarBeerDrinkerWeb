@@ -133,9 +133,9 @@ def get_likes(drinker_name):
     """Gets a list of beers liked by the drinker provided."""
 
     with engine.connect() as con:
-        query = sql.text('SELECT beerName FROM Likes WHERE Name = :name;')
-        rs = con.execute(query, Name=drinker_name)
-        return [row['beerName'] for row in rs]
+        query = sql.text('SELECT beer FROM likes WHERE name = :name;')
+        rs = con.execute(query, name=name)
+        return [row['name'] for row in rs]
 
 
 def get_drinker_info(drinker_name):
@@ -146,3 +146,40 @@ def get_drinker_info(drinker_name):
         if result is None:
             return None
         return dict(result)
+
+def add_query(sqlQuery):
+    with engine.connect() as con:
+        query = sql.text(sqlQuery)
+        rs = con.execute(query)
+        return [dict(row) in rs]
+
+def check_query(queryNo):
+    with engine.connect as con:
+        if queryNo == 1:
+            query = sql.text("SELECT IF((SELECT COUNT(*)\
+                                FROM bills b\
+                                WHERE b.billId NOT IN \
+                                    (SELECT  b1.billId\
+                                      FROM bills b1 JOIN bars b2 ON b1.barId = b2.id\
+                                      WHERE b1.timeIssued >= b2.open AND b1.timeIssued <= b2.close) ) = 0, 'True', 'False');")
+            rs=con.execute(query)
+            return rs
+        if queryNo == 2:
+            query = sql.text("SELECT IF((SELECT COUNT(*)\
+                                FROM drinkers d JOIN frequents f ON d.Id = f.drinkerId\
+                                WHERE d.name = f.drinker AND d.State != f.State\
+                                ) = 0, 'True', 'False');")
+            rs = con.execute(query)
+            return rs
+        else:
+            query == sql.text("SELECT IF ((\
+                                select count(*)\
+                                from sellsBeer s, sellsBeer s1\
+                                where s.id = s1.id and s.price > s1.price and \
+                                not exists(select *\
+                                            from sellsBeer s2, sellsBeer s3\
+                                            where s2.id = s3.id and s2.beer <> s3.beer \
+                                            and s2.beer = s.beer and s3.beer = s1.beer\
+                                            and s2.price <= s3.price)) >0 , 'True', 'False');")
+            rs=con.execute(query)
+            return rs
