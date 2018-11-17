@@ -26,8 +26,8 @@ export class DrinkersService {
     return this.http.get<Drinker[]>('/api/drinker');
   }
 
-  getDrinker(drinker: number){
-    return this.http.get<Drinker>('/api/drinker/' +drinker);
+  getDrinker(drinker_id: number){
+    return this.http.get<Drinker>('/api/drinker/' +drinker_id);
   }
 
   getDrinkerNameById(drinker_id: number){
@@ -37,5 +37,9 @@ export class DrinkersService {
   // Might have to be rewritted because database somehow gets the name but we dont have to send it in...
   getDrinkerLikes(drinker: string){
     return this.http.get<LikesBeer[]>('api/likes');
+  }
+
+  getDrinkersOrders(drinker_id: number){
+    return this.http.get<any[]>('/api/drinkersOrders/' +drinker_id);
   }
 }

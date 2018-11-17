@@ -8,6 +8,12 @@
   </div>
 </div>
 
+<div class="container">
+    <br>
+    <div id="drinkergraph">
+    </div>
+  </div>
+
 <br>
 
 <div class = "container">
@@ -38,7 +44,11 @@
           ---->
 
           <td>{{ transaction.tid }}</td>
-          <td>{{ transaction.barId }}</td>
+          <td>
+            <a routerLink="/bars/{{ transaction.barId }}">
+              {{ transaction.barId }}
+          </a>
+          </td>
           <td>{{ transaction.drinkerId }}</td>
           <td>{{ transaction.subtotal | currency}}</td>
           <td>{{ transaction.tax | currency}}</td>
@@ -80,7 +90,11 @@
             <td>{{ bill.barId }}</td>
             <td>{{ bill.drinkerId }}</td>
             <td>{{ bill.timeIssued }}</td>
-            <td>{{ bill.item }}</td>
+            <td>
+              <a routerLink="/beers/{{ bill.item }}">
+                {{ bill.item  }}
+              </a>
+            </td>
             <td>{{ bill.quantity }}</td>
             <td>{{ bill.price | currency}}</td>
           </tr>

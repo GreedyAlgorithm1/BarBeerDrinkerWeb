@@ -100,6 +100,17 @@ def get_likes():
     except Exception as e:
         return make_response(str(e), 500)
 
+@app.route("/api/drinkersOrders/<drinker_id>")
+def get_beers_ordered(drinker_id):
+    try:
+        if drinker_id is None:
+            raise ValueError("Drinker ID is not specified")
+        return jsonify(database.get_beers_ordered(drinker_id))
+    except ValueError as e:
+        return make_response(str(e), 400)
+    except Exception as e:
+        return make_response(str(e), 500)
+
 
 @app.route("/api/drinker", methods=["GET"])
 def get_drinkers():
@@ -152,6 +163,7 @@ def get_bar_frequent_counts():
     except Exception as e:
         return make_response(str(e), 500)
 
+
 @app.route('/api/bills/<drinker_id>', methods=["GET"])
 def getbill_from_drinker_(drinker_id):
     try:
@@ -162,6 +174,7 @@ def getbill_from_drinker_(drinker_id):
         return make_response(str(e), 400)
     except Exception as e:
         return make_response(str(e), 500)
+
 
 @app.route('/api/transactions/<drinker_id>', methods=["GET"])
 def get_transactions_from_drinker(drinker_id):

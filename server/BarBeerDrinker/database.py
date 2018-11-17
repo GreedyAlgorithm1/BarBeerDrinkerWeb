@@ -90,8 +90,7 @@ def get_bar_frequent_counts():
     with engine.connect() as con:
         query = sql.text('SELECT barid, bar, count(*) as frequentCount \
                 FROM frequents \
-                GROUP BY bar; \
-            ')
+                GROUP BY bar;')
         rs = con.execute(query)
         results = [dict(row) for row in rs]
         return results
@@ -149,12 +148,24 @@ def get_drinker_info(drinker_id):
     
 def get_drinker_name_by_id(drinker_id):
     with engine.connect() as con:
-        query = sql.text("SELECT name FROM drinkers WHERE id = :drinker_id;")
+        query = sql.text('SELECT name FROM drinkers WHERE id = :drinker_id;')
         rs = con.execute(query, drinker_id=drinker_id)
         result = rs.first()
         if result is None:
             return None
         return result['name']
+
+
+def get_beers_ordered(drinker_id):
+    with engine.connect() as con:
+        query = sql.text('SELECT be.id, item AS beer, count(*) AS beerCount\
+                            FROM bills b JOIN beers be ON b.item = be.name \
+                            WHERE drinkerId = :drinker_id AND item NOT IN (SELECT item \
+										                            FROM items) \
+                            GROUP BY item;')
+        rs = con.execute(query, drinker_id=drinker_id)
+        results = [dict(row) for row in rs]
+        return results
 
 
 #TRANSACTION SECTION

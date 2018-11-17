@@ -3,6 +3,8 @@ import { DrinkersService, Drinker } from '../drinkers.service';
 import { ActivatedRoute } from '@angular/router';
 import { Transaction, Bill, BillsTransactionsService } from '../bills-transactions.service';
 
+declare const Highcharts: any;
+
 @Component({
   selector: 'app-drinker-details',
   templateUrl: './drinker-details.component.html',
@@ -23,6 +25,23 @@ export class DrinkerDetailsComponent implements OnInit {
     ) { 
       this.route.paramMap.subscribe((paraMap) =>{
         this.drinkerId = +paraMap.get('drinker');
+
+        this.drinkerService.getDrinkersOrders(this.drinkerId).subscribe(
+          data =>{
+            console.log(data);
+    
+            const beers = [];
+            const counts = [];
+    
+              data.forEach(order => {
+              beers.push(order.beer);
+              counts.push(order.beerCount);
+            });
+    
+            this.renderChart(beers, counts);
+    
+          }
+        );
 
         // was trying to see if I can assign a field and using it in the html
         this.drinkerService.getDrinkerNameById(this.drinkerId).subscribe(
@@ -61,6 +80,48 @@ export class DrinkerDetailsComponent implements OnInit {
     setTimeout(() => {
       this.loading = false;
     }, 1000);
+  }
+
+  renderChart(beers: string[], counts: number[]) {
+    Highcharts.chart('drinkergraph', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Beers ordered'
+      },
+      xAxis: {
+        categories: beers,
+        title: {
+          text: 'Beer'
+        }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Amount ordered'
+        },
+        labels: {
+          overflow: 'justify'
+        }
+      },
+      plotOptions: {
+        bar: {
+          dataLabels: {
+            enabled: true
+          }
+        }
+      },
+      legend: {
+        enabled: false
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+        data: counts
+      }]
+    });
   }
 
 }
