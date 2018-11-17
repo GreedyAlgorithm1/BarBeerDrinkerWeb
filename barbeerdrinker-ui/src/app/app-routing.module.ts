@@ -6,7 +6,11 @@ import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeersComponent } from './beers/beers.component';
 import { InsightComponent } from './insight/insight.component';
 import { DrinkersComponent } from './drinkers/drinkers.component';
+
 import { ModificationsComponent } from './modifications/modifications.component';
+
+import { DrinkerDetailsComponent } from './drinker-details/drinker-details.component';
+
 
 const routes: Routes = [
 	{
@@ -35,19 +39,25 @@ const routes: Routes = [
     	component: BeerDetailsComponent
 	},
 	{
-    	path:'insight',
-    	pathMatch: 'full',
-    	component: InsightComponent
-	},
-	{
 		path:'drinkers',
 		pathMatch: 'full',
 		component: DrinkersComponent
 	},
 	{
+
 		path: 'modifications',
 		pathMatch: 'full',
 		component: ModificationsComponent
+
+		path: 'drinkers/:drinker',
+		pathMatch: 'full',
+		component: DrinkerDetailsComponent
+	},
+	{
+    	path:'insight',
+    	pathMatch: 'full',
+    	component: InsightComponent
+
 	}
 ];
 

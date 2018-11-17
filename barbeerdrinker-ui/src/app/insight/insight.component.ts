@@ -16,7 +16,7 @@ export class InsightComponent implements OnInit {
   			console.log(data);
 
   			const bars = [];
-        	const counts = [];
+        const counts = [];
 
         	data.forEach(bar => {
           bars.push(bar.bar);

@@ -1,3 +1,37 @@
-<p>
-  drinkers works!
-</p>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Welcome to the list of drunks- I mean Drinkers!</h1>
+    </div>
+  </div>
+  <br>
+
+<div class = "container">
+    <p-table [value] = "drinkers" [loading]="loading">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>State</th>
+          <th>Phone</th>
+          <th>Address</th>
+        </tr>
+      </ng-template>
+      
+      <ng-template pTemplate="body" let-drinker>
+        <tr>
+          <td> 
+
+          <a routerLink = "/drinkers/{{drinker.id}}">
+            {{drinker.id}}
+          </a>
+
+          </td>
+          <td>{{ drinker.name }}</td>
+          <td>{{ drinker.state }}</td>
+          <td>{{ drinker.phone }}</td>
+          <td>{{ drinker.address }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <br><br>

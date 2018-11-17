@@ -15,7 +15,11 @@ import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeersComponent } from './beers/beers.component';
 import { DrinkersComponent } from './drinkers/drinkers.component';
 import { InsightComponent } from './insight/insight.component';
+
 import { ModificationsComponent } from './modifications/modifications.component';
+
+import { DrinkerDetailsComponent } from './drinker-details/drinker-details.component';
+
 
 
 @NgModule({
@@ -27,7 +31,10 @@ import { ModificationsComponent } from './modifications/modifications.component'
     BeersComponent,
     DrinkersComponent,
     InsightComponent,
+
     ModificationsComponent
+
+    DrinkerDetailsComponent
   ],
   imports: [
     BrowserModule,

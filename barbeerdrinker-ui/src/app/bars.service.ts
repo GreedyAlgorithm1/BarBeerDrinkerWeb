@@ -32,9 +32,7 @@ export interface BarFoodItem{
 
 export class BarsService {
 
-  constructor(
-  public http: HttpClient
-  ) { }
+  constructor(public http: HttpClient) { }
 
 	getBars(){
 		return this.http.get<Bar[]>('/api/bar');

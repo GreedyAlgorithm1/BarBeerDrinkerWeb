@@ -28,7 +28,11 @@
     </ng-template>
     <ng-template pTemplate="body" let-bar>
       <tr>
-        <td><a routerLink="/bars/{{ bar.id }}">{{ bar.id }}</a></td>
+        <td>
+          <a routerLink="/bars/{{ bar.id }}">
+            {{ bar.id }}
+          </a>
+          </td>
         <td>{{ bar.bar}}</td>
         <td>{{ bar.price | currency }}</td>
         <td>{{ bar.customers }}</td>
