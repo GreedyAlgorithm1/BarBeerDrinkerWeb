@@ -1,0 +1,33 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"> Query Verification </h1>
+    <p> Please verify database logic after each modification by clicking on the logic you wish to verify.
+    </p>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2 class="text-center font-weight-light">Query</h2>
+  <p-table [rows]="2">
+    <ng-template pTemplate="header">
+      <tr>
+        <th> <a routerLink = "/verify/1"> 1 </a>
+        </th>
+        <th><a routerLink = "/verify/2"> 2 </a>
+        </th>
+        <th><a routerLink = "/verify/3"> 3 </a>
+        </th>
+      </tr>
+      <td> <p> Logic Check 1</p>
+      <p> Makes sure that no bill was issued during a time when the specified bar is closed.</p></td>
+       <td> <p> Logic Check 2</p>
+       		<p> Ensures that all drinkers are frequenting bars in their own state.</p>
+       </td>
+        <td> <p> Logic Check 3</p>
+        	<p> Ensures that the beer heirarchy is mainteined. Beer1 with either less than all beers Beer2 across all bars, or less than Beer2 in all bars.</p>
+        </td>
+    </ng-template>
+  </p-table>
+  <br><br>
+</div>

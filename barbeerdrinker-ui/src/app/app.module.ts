@@ -19,6 +19,8 @@ import { InsightComponent } from './insight/insight.component';
 import { ModificationsComponent } from './modifications/modifications.component';
 
 import { DrinkerDetailsComponent } from './drinker-details/drinker-details.component';
+import { VerifyComponent } from './verify/verify.component';
+import { VerifyDetailsComponent } from './verify-details/verify-details.component';
 
 
 
@@ -31,10 +33,10 @@ import { DrinkerDetailsComponent } from './drinker-details/drinker-details.compo
     BeersComponent,
     DrinkersComponent,
     InsightComponent,
-
-    ModificationsComponent
-
-    DrinkerDetailsComponent
+    ModificationsComponent,
+    DrinkerDetailsComponent,
+    VerifyComponent,
+    VerifyDetailsComponent
   ],
   imports: [
     BrowserModule,

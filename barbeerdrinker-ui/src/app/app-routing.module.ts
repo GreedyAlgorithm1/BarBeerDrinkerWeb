@@ -11,6 +11,9 @@ import { ModificationsComponent } from './modifications/modifications.component'
 
 import { DrinkerDetailsComponent } from './drinker-details/drinker-details.component';
 
+import { VerifyComponent } from './verify/verify.component';
+import { VerifyDetailsComponent } from './verify-details/verify-details.component';
+
 
 const routes: Routes = [
 	{
@@ -44,10 +47,11 @@ const routes: Routes = [
 		component: DrinkersComponent
 	},
 	{
-
 		path: 'modifications',
 		pathMatch: 'full',
 		component: ModificationsComponent
+	},
+	{
 
 		path: 'drinkers/:drinker',
 		pathMatch: 'full',
@@ -58,6 +62,16 @@ const routes: Routes = [
     	pathMatch: 'full',
     	component: InsightComponent
 
+	},
+	{
+		path: 'verify',
+		pathMatch:'full',
+		component: VerifyComponent
+	},
+	{
+		path: 'verify/:queryNo',
+		pathMatch:'full',
+		component: VerifyDetailsComponent
 	}
 ];
 

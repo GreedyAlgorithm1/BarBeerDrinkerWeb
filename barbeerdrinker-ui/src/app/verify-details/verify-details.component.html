@@ -1,0 +1,53 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"> Query Verification </h1>
+    <p> Please verify database logic after each modification by clicking on the logic you wish to verify.
+    </p>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2 class="text-center font-weight-light">Logic</h2>
+  <p-table [value] = "finResults" >
+    <ng-template pTemplate="header">
+      <tr>
+        <th> <a routerLink = "/verify/1"> 1 </a>
+        </th>
+        <th><a routerLink = "/verify/2"> 2 </a>
+        </th>
+        <th><a routerLink = "/verify/3"> 3 </a>
+        </th>
+      </tr>
+      <td>
+      	<p> SELECT COUNT(*)
+               FROM bills b
+               WHERE b.billId NOT IN 
+               		(SELECT  b1.billId
+                	FROM bills b1 JOIN bars b2 ON b1.barId = b2.id
+                	WHERE b1.timeIssued >= b2.open AND b1.timeIssued <= b2.close) ;
+        </p> 
+       </td>
+
+       <td> 
+       	<p> SELECT COUNT(*) as bool
+                                FROM drinkers d JOIN frequents f ON d.Id = f.drinkerId
+                                WHERE d.name = f.drinker AND d.State != f.State;
+       	</p>
+       </td>
+
+        <td> <p> SELECT COUNT(*) as bool
+                                from sellsBeer s, sellsBeer s1
+                                where s.id = s1.id and s.price > s1.price and 
+                                not exists(select *
+                                            from sellsBeer s2, sellsBeer s3
+                                            where s2.id = s3.id and s2.beer <> s3.beer 
+                                            and s2.beer = s.beer and s3.beer = s1.beer
+                                            and s2.price <= s3.price);
+        </p>
+    </td>
+
+    </ng-template>
+  </p-table>
+  <br><br>
+</div>

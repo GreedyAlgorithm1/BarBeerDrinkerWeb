@@ -153,35 +153,57 @@ def add_query(sqlQuery):
         return [dict(row) in rs]
 
 def check_query(queryNo):
-    with engine.connect as con:
-        if queryNo == 1:
-            query = sql.text("SELECT IF((SELECT COUNT(*)\
+
+    with engine.connect() as con:
+        if queryNo is '1':
+
+            query = sql.text('SELECT COUNT(*) as bool\
                                 FROM bills b\
                                 WHERE b.billId NOT IN \
                                     (SELECT  b1.billId\
                                       FROM bills b1 JOIN bars b2 ON b1.barId = b2.id\
-                                      WHERE b1.timeIssued >= b2.open AND b1.timeIssued <= b2.close) ) = 0, 'True', 'False');")
+                                      WHERE b1.timeIssued >= b2.open AND b1.timeIssued <= b2.close);')
+
             rs=con.execute(query)
-            return rs
-        if queryNo == 2:
-            query = sql.text("SELECT IF((SELECT COUNT(*)\
+            result = rs.first()
+            if result is None:
+                return None
+            if result['bool'] == 0:
+                return "Logic 1 verified"
+            else:
+                return "An error has occurred."
+
+        if queryNo is '2':
+            query = sql.text('SELECT COUNT(*) as bool\
                                 FROM drinkers d JOIN frequents f ON d.Id = f.drinkerId\
-                                WHERE d.name = f.drinker AND d.State != f.State\
-                                ) = 0, 'True', 'False');")
+                                WHERE d.name = f.drinker AND d.State != f.State;')
+
             rs = con.execute(query)
-            return rs
-        else:
-            query == sql.text("SELECT IF ((\
-                                select count(*)\
+            result = rs.first()
+            if result is None:
+                return None
+            if result['bool'] == 0:
+                return "Logic 2 verified"
+            else:
+                return "An error has occurred."
+
+        if queryNo is '3':
+            query = sql.text('SELECT count(*) as bool\
                                 from sellsBeer s, sellsBeer s1\
                                 where s.id = s1.id and s.price > s1.price and \
                                 not exists(select *\
                                             from sellsBeer s2, sellsBeer s3\
                                             where s2.id = s3.id and s2.beer <> s3.beer \
                                             and s2.beer = s.beer and s3.beer = s1.beer\
-                                            and s2.price <= s3.price)) >0 , 'True', 'False');")
+                                            and s2.price <= s3.price);')
             rs=con.execute(query)
-            return rs
+            result = rs.first()
+            if result is None:
+                return None
+            if result['bool'] == 0:
+                return "An error has occurred"
+            else:
+                return "Logic 3 Verfied."
 
     
 def get_drinker_name_by_id(drinker_id):
@@ -199,8 +221,7 @@ def get_beers_ordered(drinker_id):
         query = sql.text('SELECT be.id, item AS beer, count(*) AS beerCount\
                             FROM bills b JOIN beers be ON b.item = be.name \
                             WHERE drinkerId = :drinker_id AND item NOT IN (SELECT item \
-										                            FROM items) \
-                            GROUP BY item;')
+							FROM items) GROUP BY item;')
         rs = con.execute(query, drinker_id=drinker_id)
         results = [dict(row) for row in rs]
         return results
