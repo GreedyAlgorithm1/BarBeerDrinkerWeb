@@ -18,7 +18,7 @@ import { VerifyDetailsComponent } from './verify-details/verify-details.componen
 
 const routes: Routes = [
 	{
-		path: '',
+		path: 'static',
 		pathMatch: 'full',
 		component: WelcomeComponent
 	},
