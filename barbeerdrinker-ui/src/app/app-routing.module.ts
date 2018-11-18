@@ -23,6 +23,11 @@ const routes: Routes = [
 		component: WelcomeComponent
 	},
 	{
+		path: 'home',
+		pathMatch: 'full',
+		component: WelcomeComponent
+	},
+	{
 		path: 'bars',
 		pathMatch: 'full',
 		component: BarsComponent
