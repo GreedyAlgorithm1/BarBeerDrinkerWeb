@@ -316,4 +316,3 @@ def get_bills_from_drinker(drinker_id):
         for i, _ in enumerate(results):
             results[i]['price'] = float(results[i]['price'])
         return results
-
