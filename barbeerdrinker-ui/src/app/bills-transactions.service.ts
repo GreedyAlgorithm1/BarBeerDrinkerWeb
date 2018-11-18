@@ -29,11 +29,11 @@ export class BillsTransactionsService {
   constructor(private http: HttpClient) { }
 
   getBills(){
-
+    return this.http.get<Bill[]>('/api/bills');
   }
 
   getTransactions(){
-
+    return this.http.get<Transaction[]>('/api/transactions');
   }
 
   getDrinkersBills(drinker_id: number){

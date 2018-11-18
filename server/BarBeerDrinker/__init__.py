@@ -66,6 +66,15 @@ def get_food_menu(bar_id):
         return make_response(str(e), 500)
 
 
+@app.route("/api/getBarsSellingBeers", methods=["GET"])
+def get_bars_selling_beers():
+    return jsonify(database.get_bars_selling_beers())
+
+@app.route("/api/getBarsSellingItems", methods=["GET"])
+def get_bars_selling_items():
+    return jsonify(database.get_bars_selling_items())
+
+
 @app.route("/api/beer", methods=["GET"])
 def get_beers():
     try:
@@ -99,6 +108,16 @@ def get_likes():
         return jsonify(database.get_likes(drinker))
     except Exception as e:
         return make_response(str(e), 500)
+
+
+@app.route("/api/getDrinkersLikingBeers", methods=["GET"])
+def drinkers_liking_beers():
+    return jsonify(database.drinkers_liking_beers())
+
+
+@app.route("/api/getDrinkersFrequentingBars", methods=["GET"])
+def drinkers_frequenting_bars():
+    return jsonify(database.drinkers_frequenting_bars())
 
 @app.route("/api/drinkersOrders/<drinker_id>")
 def get_beers_ordered(drinker_id):
@@ -143,6 +162,16 @@ def get_drinker_name_by_id(drinker_id):
     except Exception as e:
         return make_response(str(e), 500)
 
+
+@app.route("/api/bills", methods=["GET"])
+def get_bills():
+    return jsonify(database.get_bills())
+
+
+@app.route("/api/transactions", methods=["GET"])
+def get_transactions():
+    return jsonify(database.get_transactions())
+
 @app.route('/api/bills/<drinker_id>', methods=["GET"])
 def get_bill_from_drinker_(drinker_id):
     try:
@@ -184,14 +213,16 @@ def get_bar_frequent_counts():
     except Exception as e:
         return make_response(str(e), 500)
 
+
 @app.route('/api/modifications/<sqlQuery>', methods=['GET'])
 def execue_mod(sqlQuery):
     try:
-        if sqlQueryNo is None:
+        if sqlQuery is None:
             raise ValueError("No query specified")
         return jsonify(database.add_query(sqlQuery))
     except Exception as e:
         return make_response(str(e), 500)
+
 
 @app.route('/api/verify/<queryNo>', methods=['GET'])
 def get_query_ver(queryNo):

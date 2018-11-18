@@ -12,7 +12,7 @@ export class DrinkersComponent implements OnInit {
   loading: boolean;
   drinkers: Drinker[];
 
-  constructor(public drinkersService: DrinkersService) { 
+  constructor(private drinkersService: DrinkersService) { 
     this.drinkersService.getDrinkers().subscribe(
       data => {
         console.log(data);

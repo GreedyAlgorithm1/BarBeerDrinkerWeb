@@ -86,14 +86,37 @@ def get_bars_selling(beer):
         return results
 
 
+def get_bars_selling_beers():
+        with engine.connect() as con:
+                query = sql.text('SELECT id, bar, beer, price \
+                                        FROM sellsBeer \
+                                        ORDER BY id ASC;')
+                rs = con.execute(query)
+                results = [dict(row) for row in rs]
+                for i, _ in enumerate(results):
+                        results[i]['price'] = float(results[i]['price'])
+                return results
+
+def get_bars_selling_items():
+        with engine.connect() as con:
+                query = sql.text('SELECT id, bar, item, price \
+                                        FROM sellsItem \
+                                        ORDER BY id ASC;')
+                rs = con.execute(query)
+                results = [dict(row) for row in rs]
+                for i, _ in enumerate(results):
+                        results[i]['price'] = float(results[i]['price'])
+                return results
+
+
 def get_bar_frequent_counts():
-    with engine.connect() as con:
-        query = sql.text('SELECT barid, bar, count(*) as frequentCount \
-                FROM frequents \
-                GROUP BY bar;')
-        rs = con.execute(query)
-        results = [dict(row) for row in rs]
-        return results
+        with engine.connect() as con:
+                query = sql.text('SELECT barid, bar, count(*) as frequentCount \
+                                        FROM frequents \
+                                        GROUP BY bar;')
+                rs = con.execute(query)
+                results = [dict(row) for row in rs]
+                return results
 
 
 #BEER SECTION
@@ -133,8 +156,26 @@ def get_likes(drinker_name):
     drinker_name = drinker_name.strip()
     with engine.connect() as con:
         query = sql.text('SELECT beer FROM likes WHERE name = :name;')
-        rs = con.execute(query, name=name)
+        rs = con.execute(query, name=drinker_name)
         return [row['name'] for row in rs]
+
+
+def drinkers_liking_beers():
+        with engine.connect() as con:
+                query = sql.text('SELECT id, drinker, beer \
+                                        FROM likes \
+                                        ORDER BY id ASC;')
+                rs = con.execute(query)
+                return [dict(row) for row in rs]
+
+
+def drinkers_frequenting_bars():
+        with engine.connect() as con:
+                query = sql.text('SELECT drinkerId, drinker, barId, bar, State AS state \
+                                        from frequents \
+                                        Order By drinkerId ASC;')
+                rs = con.execute(query)
+                return [dict(row) for row in rs]
 
 
 def get_drinker_info(drinker_id):
@@ -150,7 +191,7 @@ def add_query(sqlQuery):
     with engine.connect() as con:
         query = sql.text(sqlQuery)
         rs = con.execute(query)
-        return [dict(row) in rs]
+        return [dict(row) for row in rs]
 
 def check_query(queryNo):
     with engine.connect as con:
@@ -199,7 +240,7 @@ def get_beers_ordered(drinker_id):
         query = sql.text('SELECT be.id, item AS beer, count(*) AS beerCount\
                             FROM bills b JOIN beers be ON b.item = be.name \
                             WHERE drinkerId = :drinker_id AND item NOT IN (SELECT item \
-										                            FROM items) \
+									        FROM items) \
                             GROUP BY item;')
         rs = con.execute(query, drinker_id=drinker_id)
         results = [dict(row) for row in rs]
@@ -207,6 +248,14 @@ def get_beers_ordered(drinker_id):
 
 
 #TRANSACTION SECTION
+def get_transactions():
+        with engine.connect() as con:
+                query = sql.text('SELECT tid, barId, drinkerId, subtotal, tax, tip, total \
+                                        FROM transactions;')
+                rs = con.execute(query)
+                return [dict(row) for row in rs]
+
+
 def get_transactions_from_drinker(drinker_id):
     with engine.connect() as con:
         query = sql.text('SELECT t1.tid, t1.barId, t1.drinkerId, t1.subtotal, t1.tax, t1.tip, t1.total \
@@ -224,6 +273,17 @@ def get_transactions_from_drinker(drinker_id):
 
 
 #BILLS SECTION
+def get_bills():
+        with engine.connect() as con:
+                query = sql.text('SELECT billId, barId, drinkerId, timeIssued, item, quantity, price \
+                                        FROM bills;')
+                rs = con.execute(query)
+                results = [dict(row) for row in rs]
+                for i, _ in enumerate(results):
+                        results[i]['price'] = float(results[i]['price'])
+                return results                
+
+
 def get_bills_from_drinker(drinker_id):
     with engine.connect() as con:
         query = sql.text('SELECT b.billId, b.barId, b.drinkerId, b.timeIssued, b.item, b.quantity, b.price \

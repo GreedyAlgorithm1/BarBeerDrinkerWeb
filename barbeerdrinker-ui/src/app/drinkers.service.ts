@@ -9,10 +9,18 @@ export interface Drinker{
   address: string;
 }
 
-export interface LikesBeer{
-  id: number;
-  name: string;
-  manf: string;
+export interface DrinkerLikesBeer{
+  drinkerId: number;
+  drinkerName: string;
+  beerName: string;
+}
+
+export interface DrinkerFrequents{
+  drinkerId: number;
+  drinkerName: string;
+  barId: number;
+  barName: string;
+  state: string;
 }
 
 @Injectable({
@@ -36,7 +44,15 @@ export class DrinkersService {
 
   // Might have to be rewritted because database somehow gets the name but we dont have to send it in...
   getDrinkerLikes(drinker: string){
-    return this.http.get<LikesBeer[]>('api/likes');
+    return this.http.get<DrinkerLikesBeer[]>('api/likes');
+  }
+
+  getDrinkersLikingBeers(){
+    return this.http.get<DrinkerLikesBeer[]>('/api/getDrinkersLikingBeers');
+  }
+
+  getDrinkersFrequentingBars(){
+    return this.http.get<DrinkerFrequents[]>('/api/getDrinkersFrequentingBars');
   }
 
   getDrinkersOrders(drinker_id: number){

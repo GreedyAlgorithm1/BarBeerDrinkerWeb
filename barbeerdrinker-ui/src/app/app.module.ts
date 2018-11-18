@@ -31,9 +31,7 @@ import { DrinkerDetailsComponent } from './drinker-details/drinker-details.compo
     BeersComponent,
     DrinkersComponent,
     InsightComponent,
-
-    ModificationsComponent
-
+    ModificationsComponent,
     DrinkerDetailsComponent
   ],
   imports: [

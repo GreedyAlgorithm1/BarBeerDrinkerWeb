@@ -17,88 +17,89 @@
 <br>
 
 <div class = "container">
-    <h2 class = "text-center font-weight-light"> Transactions </h2>
-    <br>
-    <p-table [value] = "transactions" [loading]="loading">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Transaction ID</th>
-          <th>Bar ID</th>
-          <th>Drinker ID</th>
-          <th>Subtotal</th>
-          <th>Tax</th>
-          <th>Tip</th>
-          <th>Total</th>
-        </tr>
-      </ng-template>
-      
-      <ng-template pTemplate="body" let-transaction>
-        <tr>
+  <h2 class = "text-center font-weight-light"> Transactions </h2>
+  <br>
+  <p-table [value] = "transactions" [loading]="loading">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Transaction ID</th>
+        <th>Bar ID</th>
+        <th>Drinker ID</th>
+        <th>Subtotal</th>
+        <th>Tax</th>
+        <th>Tip</th>
+        <th>Total</th>
+      </tr>
+    </ng-template>
+    
+    <ng-template pTemplate="body" let-transaction>
+      <tr>
 
-          <!----
-          <td> 
-          <a routerLink = "/drinkers/{{drinker.id}}">
-            {{transaction.id}}
+        <!----
+        <td> 
+        <a routerLink = "/drinkers/{{drinker.id}}">
+          {{transaction.id}}
+        </a>
+        </td>
+        ---->
+
+        <td>{{ transaction.tid }}</td>
+        <td>
+          <a routerLink="/bars/{{ transaction.barId }}">
+            {{ transaction.barId }}
+        </a>
+        </td>
+        <td>{{ transaction.drinkerId }}</td>
+        <td>{{ transaction.subtotal | currency}}</td>
+        <td>{{ transaction.tax | currency}}</td>
+        <td>{{ transaction.tip | currency}}</td>
+        <td>{{ transaction.total | currency}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<br><br>
+
+<div class = "container">
+  <h2 class = "text-center font-weight-light"> Bills </h2>
+  <br>
+  <p-table [value] = "bills" [paginator]="true" [rows]="10" [loading]="loading">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Bill ID</th>
+        <th>Bar ID</th>
+        <th>Drinker ID</th>
+        <th>Time Issued</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </ng-template>
+    
+    <ng-template pTemplate="body" let-bill>
+      <tr>
+
+        <!----
+        <td> 
+        <a routerLink = "/drinkers/{{drinker.id}}">
+          {{drinker.id}}
+        </a>
+        </td>
+        --->
+        <td>{{ bill.billId }}</td>
+        <td>{{ bill.barId }}</td>
+        <td>{{ bill.drinkerId }}</td>
+        <td>{{ bill.timeIssued }}</td>
+        <td>
+          <a routerLink="/beers/{{ bill.item }}">
+            {{ bill.item  }}
           </a>
-          </td>
-          ---->
-
-          <td>{{ transaction.tid }}</td>
-          <td>
-            <a routerLink="/bars/{{ transaction.barId }}">
-              {{ transaction.barId }}
-          </a>
-          </td>
-          <td>{{ transaction.drinkerId }}</td>
-          <td>{{ transaction.subtotal | currency}}</td>
-          <td>{{ transaction.tax | currency}}</td>
-          <td>{{ transaction.tip | currency}}</td>
-          <td>{{ transaction.total | currency}}</td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
-  <br><br>
-
-  <div class = "container">
-      <h2 class = "text-center font-weight-light"> Bills </h2>
-      <br>
-      <p-table [value] = "bills" [paginator]="true" [rows]="10" [loading]="loading">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Bill ID</th>
-            <th>Bar ID</th>
-            <th>Drinker ID</th>
-            <th>Time Issued</th>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Price</th>
-          </tr>
-        </ng-template>
-        
-        <ng-template pTemplate="body" let-bill>
-          <tr>
-
-            <!----
-            <td> 
-            <a routerLink = "/drinkers/{{drinker.id}}">
-              {{drinker.id}}
-            </a>
-            </td>
-            --->
-            <td>{{ bill.billId }}</td>
-            <td>{{ bill.barId }}</td>
-            <td>{{ bill.drinkerId }}</td>
-            <td>{{ bill.timeIssued }}</td>
-            <td>
-              <a routerLink="/beers/{{ bill.item }}">
-                {{ bill.item  }}
-              </a>
-            </td>
-            <td>{{ bill.quantity }}</td>
-            <td>{{ bill.price | currency}}</td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
-    <br><br>
+        </td>
+        <td>{{ bill.quantity }}</td>
+        <td>{{ bill.price | currency }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+ </div>
+<br><br>
