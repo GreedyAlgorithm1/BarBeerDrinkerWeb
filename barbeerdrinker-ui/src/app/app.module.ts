@@ -19,6 +19,7 @@ import { InsightComponent } from './insight/insight.component';
 import { ModificationsComponent } from './modifications/modifications.component';
 
 import { DrinkerDetailsComponent } from './drinker-details/drinker-details.component';
+import { BarsComponent } from './bars/bars.component';
 
 
 
@@ -32,7 +33,8 @@ import { DrinkerDetailsComponent } from './drinker-details/drinker-details.compo
     DrinkersComponent,
     InsightComponent,
     ModificationsComponent,
-    DrinkerDetailsComponent
+    DrinkerDetailsComponent,
+    BarsComponent
   ],
   imports: [
     BrowserModule,

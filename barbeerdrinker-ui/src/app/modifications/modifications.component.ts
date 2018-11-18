@@ -56,7 +56,6 @@ export class ModificationsComponent implements OnInit {
 		this.beerService.getBeers().subscribe(
 			data => {
 				this.beers = data;
-				console.log(data);
 			}
 		);
 	}
@@ -97,7 +96,6 @@ export class ModificationsComponent implements OnInit {
 		this.barService.getBarsSellingBeers().subscribe(
 			data => {
 				this.sellsBeers = data;
-				console.log(data);
 			}
 		);
 	}

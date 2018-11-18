@@ -10,18 +10,19 @@ import { DrinkersComponent } from './drinkers/drinkers.component';
 import { ModificationsComponent } from './modifications/modifications.component';
 
 import { DrinkerDetailsComponent } from './drinker-details/drinker-details.component';
+import { BarsComponent } from './bars/bars.component';
 
 
 const routes: Routes = [
 	{
 		path: '',
 		pathMatch: 'full',
-		redirectTo: 'bars'
+		component: WelcomeComponent
 	},
 	{
 		path: 'bars',
 		pathMatch: 'full',
-		component : WelcomeComponent
+		component: BarsComponent
 	},
 	{
     	path: 'bars/:bar',
