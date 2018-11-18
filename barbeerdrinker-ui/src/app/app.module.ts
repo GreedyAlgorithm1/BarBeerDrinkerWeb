@@ -39,12 +39,9 @@ import { BarsComponent } from './bars/bars.component';
     InsightComponent,
     ModificationsComponent,
     DrinkerDetailsComponent,
-
     VerifyComponent,
-    VerifyDetailsComponent
-
+    VerifyDetailsComponent,
     BarsComponent
-
   ],
   imports: [
     BrowserModule,
