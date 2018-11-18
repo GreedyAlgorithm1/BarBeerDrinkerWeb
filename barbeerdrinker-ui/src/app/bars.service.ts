@@ -26,6 +26,20 @@ export interface BarFoodItem{
 	price: number;
 }
 
+export interface BarSellsItem{
+	barId: string;
+	barName: string;
+	itemName: string;
+	price: number;
+}
+
+export interface BarSellsBeer{
+	barId: string;
+	barName: string;
+	beerName: string;
+	price: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -40,6 +54,14 @@ export class BarsService {
 
 	getBar(bar:number){	
 		return this.http.get<Bar>('/api/bar/'+bar);
+	}
+
+	getBarsSellingBeers(){
+		return this.http.get<BarSellsBeer[]>('/api/getBarsSellingBeers');
+	}
+
+	getBarsSellingItems(){
+		return this.http.get<BarSellsItem[]>('/api/getBarsSellingItems');
 	}
 
 	getMenu(bar:number){

@@ -19,8 +19,12 @@ import { InsightComponent } from './insight/insight.component';
 import { ModificationsComponent } from './modifications/modifications.component';
 
 import { DrinkerDetailsComponent } from './drinker-details/drinker-details.component';
+
 import { VerifyComponent } from './verify/verify.component';
 import { VerifyDetailsComponent } from './verify-details/verify-details.component';
+
+import { BarsComponent } from './bars/bars.component';
+
 
 
 
@@ -35,8 +39,12 @@ import { VerifyDetailsComponent } from './verify-details/verify-details.componen
     InsightComponent,
     ModificationsComponent,
     DrinkerDetailsComponent,
+
     VerifyComponent,
     VerifyDetailsComponent
+
+    BarsComponent
+
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,12 @@ export interface BeerLocation{
 	bar: string;
 	price: number;
 	customers: number;
+}
 
+export interface Beer{
+  id: number;
+  name: string;
+  manf: string;
 }
 
 @Injectable({
@@ -18,7 +23,7 @@ export class BeersService {
   constructor(private http: HttpClient) { }
 
   getBeers() {
-    return this.http.get<any[]>('/api/beer');
+    return this.http.get<Beer[]>('/api/beer');
   }
 
   getBarsSelling(beer:string){
